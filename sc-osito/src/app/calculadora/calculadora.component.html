@@ -1,0 +1,47 @@
+<section class="calc">
+  <header class="display" aria-label="Pantalla de la calculadora">
+    <div class="expression" aria-label="Expresión">
+      {{ displayExpression() }}
+    </div>
+    <div class="result" aria-label="Resultado">{{ result() }}</div>
+    @if (error()) {
+      <div class="error" role="alert">{{ error() }}</div>
+    }
+  </header>
+
+  <div class="keys" role="group" aria-label="Teclado">
+    <button type="button" class="key key--action" (click)="clearAll()">AC</button>
+    <button type="button" class="key key--action" (click)="del()">DEL</button>
+    <button type="button" class="key key--fn" (click)="append('(')">(</button>
+    <button type="button" class="key key--fn" (click)="append(')')">)</button>
+
+    <button type="button" class="key key--fn" (click)="append('sin(')">sin</button>
+    <button type="button" class="key key--fn" (click)="append('cos(')">cos</button>
+    <button type="button" class="key key--fn" (click)="append('tan(')">tan</button>
+    <button type="button" class="key key--fn" (click)="append('log(')">log</button>
+
+    <button type="button" class="key key--fn" (click)="append('sqrt(')">sqrt</button>
+    <button type="button" class="key key--fn" (click)="append('PI')">PI</button>
+    <button type="button" class="key key--fn" (click)="append('^')">pow</button>
+    <button type="button" class="key key--op" (click)="append('/')">÷</button>
+
+    <button type="button" class="key" (click)="append('7')">7</button>
+    <button type="button" class="key" (click)="append('8')">8</button>
+    <button type="button" class="key" (click)="append('9')">9</button>
+    <button type="button" class="key key--op" (click)="append('*')">×</button>
+
+    <button type="button" class="key" (click)="append('4')">4</button>
+    <button type="button" class="key" (click)="append('5')">5</button>
+    <button type="button" class="key" (click)="append('6')">6</button>
+    <button type="button" class="key key--op" (click)="append('-')">−</button>
+
+    <button type="button" class="key" (click)="append('1')">1</button>
+    <button type="button" class="key" (click)="append('2')">2</button>
+    <button type="button" class="key" (click)="append('3')">3</button>
+    <button type="button" class="key key--op" (click)="append('+')">+</button>
+
+    <button type="button" class="key key--wide" (click)="append('0')">0</button>
+    <button type="button" class="key" (click)="append('.')">.</button>
+    <button type="button" class="key key--equals" (click)="calculate()">=</button>
+  </div>
+</section>

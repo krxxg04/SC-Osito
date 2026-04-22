@@ -1,0 +1,90 @@
+:host {
+  display: block;
+}
+
+.calc {
+  width: min(420px, 100%);
+  margin-inline: auto;
+  padding: 1rem;
+}
+
+.display {
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  background: color-mix(in srgb, Canvas 92%, black);
+}
+
+.expression {
+  font-variant-numeric: tabular-nums;
+  word-break: break-all;
+  min-height: 1.25rem;
+  opacity: 0.85;
+}
+
+.result {
+  margin-top: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  word-break: break-all;
+}
+
+.error {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+.keys {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.key {
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  background: color-mix(in srgb, Canvas 85%, black);
+  color: CanvasText;
+  padding: 0.85rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+}
+
+.key:active {
+  transform: translateY(1px);
+}
+
+.key--op {
+  font-weight: 600;
+}
+
+.key--fn {
+  font-size: 0.95rem;
+}
+
+.key--action {
+  font-weight: 700;
+}
+
+.key--equals {
+  font-weight: 800;
+}
+
+.key--wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 420px) {
+  .calc {
+    padding: 0.75rem;
+  }
+
+  .key {
+    padding: 0.8rem 0.5rem;
+  }
+}
