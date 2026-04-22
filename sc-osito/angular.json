@@ -30,6 +30,13 @@
             ],
             "server": "src/main.server.ts",
             "outputMode": "server",
+            "allowedCommonJsDependencies": [
+              "@babel/runtime",
+              "escape-latex",
+              "javascript-natural-sort",
+              "seedrandom",
+              "tiny-emitter"
+            ],
             "security": {
               "allowedHosts": []
             },
