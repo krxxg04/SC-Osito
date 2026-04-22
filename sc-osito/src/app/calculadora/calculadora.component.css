@@ -55,6 +55,15 @@
   user-select: none;
 }
 
+.badge {
+  margin-left: 0.35rem;
+  padding: 0.1rem 0.35rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
 .key:active {
   transform: translateY(1px);
 }
@@ -67,19 +76,25 @@
   font-size: 0.95rem;
 }
 
+.key--mem {
+  font-size: 0.95rem;
+}
+
+.key--shift {
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
 .key--action {
   font-weight: 700;
 }
 
 .key--equals {
   font-weight: 800;
-}
-
-.key--wide {
   grid-column: span 2;
 }
 
-.key--equals {
+.key--wide {
   grid-column: span 2;
 }
 
