@@ -12,36 +12,50 @@
   <div class="keys" role="group" aria-label="Teclado">
     <button type="button" class="key key--action" (click)="clearAll()">AC</button>
     <button type="button" class="key key--action" (click)="del()">DEL</button>
+    <button type="button" class="key key--fn" (click)="toggleAngleMode()">DRG: {{ angleMode() }}</button>
+    <button type="button" class="key key--fn" (click)="append('Ans')">Ans</button>
     <button type="button" class="key key--fn" (click)="append('(')">(</button>
-    <button type="button" class="key key--fn" (click)="append(')')">)</button>
 
+    <button type="button" class="key key--fn" (click)="append(')')">)</button>
     <button type="button" class="key key--fn" (click)="append('sin(')">sin</button>
     <button type="button" class="key key--fn" (click)="append('cos(')">cos</button>
     <button type="button" class="key key--fn" (click)="append('tan(')">tan</button>
-    <button type="button" class="key key--fn" (click)="append('log(')">log</button>
+    <button type="button" class="key key--fn" (click)="append('log10(')">log</button>
 
+    <button type="button" class="key key--fn" (click)="append('log(')">ln</button>
     <button type="button" class="key key--fn" (click)="append('sqrt(')">sqrt</button>
+    <button type="button" class="key key--fn" (click)="append('abs(')">abs</button>
     <button type="button" class="key key--fn" (click)="append('PI')">PI</button>
-    <button type="button" class="key key--fn" (click)="append('^')">pow</button>
-    <button type="button" class="key key--op" (click)="append('/')">÷</button>
+    <button type="button" class="key key--fn" (click)="append('e')">e</button>
 
+    <button type="button" class="key key--fn" (click)="append('^')">pow</button>
+    <button type="button" class="key key--fn" (click)="applySquare()">x²</button>
+    <button type="button" class="key key--fn" (click)="applyCube()">x³</button>
+    <button type="button" class="key key--fn" (click)="applyInverse()">1/x</button>
+    <button type="button" class="key key--fn" (click)="applyFactorial()">x!</button>
+
+    <button type="button" class="key key--fn" (click)="append('10^(')">10^x</button>
+    <button type="button" class="key key--fn" (click)="append('e^(')">e^x</button>
+    <button type="button" class="key key--fn" (click)="appendPercent()">%</button>
+    <button type="button" class="key key--op" (click)="append('/')">÷</button>
     <button type="button" class="key" (click)="append('7')">7</button>
+
     <button type="button" class="key" (click)="append('8')">8</button>
     <button type="button" class="key" (click)="append('9')">9</button>
     <button type="button" class="key key--op" (click)="append('*')">×</button>
-
     <button type="button" class="key" (click)="append('4')">4</button>
     <button type="button" class="key" (click)="append('5')">5</button>
+
     <button type="button" class="key" (click)="append('6')">6</button>
     <button type="button" class="key key--op" (click)="append('-')">−</button>
-
     <button type="button" class="key" (click)="append('1')">1</button>
     <button type="button" class="key" (click)="append('2')">2</button>
+
     <button type="button" class="key" (click)="append('3')">3</button>
     <button type="button" class="key key--op" (click)="append('+')">+</button>
-
     <button type="button" class="key key--wide" (click)="append('0')">0</button>
     <button type="button" class="key" (click)="append('.')">.</button>
+
     <button type="button" class="key key--equals" (click)="calculate()">=</button>
   </div>
 </section>
