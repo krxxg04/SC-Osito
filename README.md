@@ -1,5 +1,38 @@
 # SC-Osito
-First version of a scientific calculator made in C++.
+Proyecto de calculadora científica.
+
+> Nota: En este repositorio hay una implementación web (Angular/TypeScript) dentro de `sc-osito/`.
+
+## Especificaciones (funciones solicitadas)
+
+### Lógica / evaluación
+- Evaluación de expresiones como texto usando **mathjs** (`evaluate`).
+- Soporta expresiones con paréntesis y operadores (por ejemplo: `(2+3)*4`, `2^3`, `5!`).
+- Variables internas:
+  - `Ans` = último resultado numérico.
+  - `M` = valor de memoria.
+
+### Modos
+- **DRG (RAD/DEG)**: el modo afecta a `sin/cos/tan` y a sus inversas `asin/acos/atan`.
+- **SHIFT**: habilita funciones secundarias (inversas trigonométricas e hiperbólicas).
+
+### Operaciones soportadas
+- **Básicas**: `+`, `-`, `*`, `/`, `(`, `)`, `.`
+- **Científicas**:
+  - Trigonometría: `sin`, `cos`, `tan` + inversas con SHIFT.
+  - Hiperbólicas: `sinh`, `cosh`, `tanh` + inversas con SHIFT.
+  - Logaritmos: `ln` (`log`) y `log` base 10 (`log10`).
+  - Potencias y raíces: `x^y`, `x²`, `x³`, `sqrt`.
+  - Otras: `abs`, `1/x`, `x!`, constantes `PI` y `e`.
+  - Porcentaje: `%` (se interpreta como `*0.01`).
+  - Notación científica: `EXP` (para `1e3`, `2.5e-4`, etc.).
+
+### Memoria
+- `MC`, `MR`, `M+`, `M-` y variable `M`.
+
+### Tecnología UI
+- Componente standalone con **Signals**.
+- Teclado en **CSS Grid** (responsivo) con botones científicos adicionales.
 
 # Guía de la Calculadora Científica
 
