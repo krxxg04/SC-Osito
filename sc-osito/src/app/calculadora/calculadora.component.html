@@ -75,4 +75,21 @@
     <button type="button" class="key key--fn" (click)="append('e^(')">e^x</button>
     <button type="button" class="key key--equals" (click)="calculate()">=</button>
   </div>
+
+  <details class="quick-help">
+    <summary>Guía rápida</summary>
+    <ul>
+      <li><strong>SHIFT</strong>: activa inversas (asin/acos/atan y asinh/acosh/atanh).</li>
+      <li><strong>DRG</strong>: cambia <strong>RAD</strong>/<strong>DEG</strong> para trigonometría.</li>
+      <li><strong>Ans</strong>: último resultado. <strong>M</strong>: memoria (MC/MR/M+/M-).</li>
+      <li><strong>EXP</strong>: notación científica (ej: <code>1e3</code> = 1000).</li>
+      <li><strong>%</strong>: porcentaje como <code>*0.01</code> (ej: <code>200*10%</code>).</li>
+    </ul>
+    <div class="examples">
+      <div><strong>Ejemplos:</strong></div>
+      <div><code>sin(PI/2)</code> (RAD)</div>
+      <div><code>sin(90)</code> (DEG)</div>
+      <div><code>sqrt(16)+log10(100)</code></div>
+    </div>
+  </details>
 </section>

@@ -107,3 +107,36 @@
     padding: 0.8rem 0.5rem;
   }
 }
+
+.quick-help {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  background: color-mix(in srgb, Canvas 92%, black);
+  font-size: 0.9rem;
+}
+
+.quick-help > summary {
+  cursor: pointer;
+  font-weight: 700;
+  user-select: none;
+}
+
+.quick-help ul {
+  margin-top: 0.5rem;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.quick-help code {
+  font-variant-numeric: tabular-nums;
+}
+
+.examples {
+  margin-top: 0.5rem;
+  opacity: 0.95;
+  display: grid;
+  gap: 0.25rem;
+}
