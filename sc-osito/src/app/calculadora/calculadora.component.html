@@ -1,0 +1,199 @@
+<section class="calc">
+  <header class="display" aria-label="Pantalla de la calculadora">
+    <div class="expression" aria-label="Expresión">
+      {{ displayExpression() }}
+    </div>
+    <div class="result" aria-label="Resultado">{{ result() }}</div>
+    @if (error()) {
+      <div class="error" role="alert">{{ error() }}</div>
+    }
+  </header>
+
+  <div class="keys" role="group" aria-label="Teclado">
+    <button type="button" class="key key--action" (click)="clearAll()">AC</button>
+    <button type="button" class="key key--action" (click)="del()">DEL</button>
+    <button type="button" class="key key--shift" (click)="toggleShift()">
+      SHIFT
+      @if (shift()) {
+        <span class="badge">ON</span>
+      }
+    </button>
+    <button type="button" class="key key--fn" (click)="toggleAngleMode()">DRG: {{ angleMode() }}</button>
+    <button type="button" class="key key--fn" (click)="append('Ans')">Ans</button>
+
+    <button type="button" class="key key--mem" (click)="memoryClear()">MC</button>
+    <button type="button" class="key key--mem" (click)="memoryRecall()">MR</button>
+    <button type="button" class="key key--mem" (click)="memoryAdd()">M+</button>
+    <button type="button" class="key key--mem" (click)="memorySub()">M-</button>
+    <button type="button" class="key key--fn" (click)="append('M')">M</button>
+
+    <button type="button" class="key key--fn" (click)="append('(')">(</button>
+    <button type="button" class="key key--fn" (click)="append(')')">)</button>
+    <button type="button" class="key key--fn" (click)="toggleSign()">+/-</button>
+    <button type="button" class="key key--fn" (click)="appendPercent()">%</button>
+    <button type="button" class="key key--op" (click)="append('/')">÷</button>
+
+    <button type="button" class="key key--fn" (click)="pressTrig('sin')">@if (shift()) { asin } @else { sin }</button>
+    <button type="button" class="key key--fn" (click)="pressTrig('cos')">@if (shift()) { acos } @else { cos }</button>
+    <button type="button" class="key key--fn" (click)="pressTrig('tan')">@if (shift()) { atan } @else { tan }</button>
+    <button type="button" class="key key--fn" (click)="append('log10(')">log</button>
+    <button type="button" class="key key--fn" (click)="append('log(')">ln</button>
+
+    <button type="button" class="key key--fn" (click)="pressHyp('sinh')">@if (shift()) { asinh } @else { sinh }</button>
+    <button type="button" class="key key--fn" (click)="pressHyp('cosh')">@if (shift()) { acosh } @else { cosh }</button>
+    <button type="button" class="key key--fn" (click)="pressHyp('tanh')">@if (shift()) { atanh } @else { tanh }</button>
+    <button type="button" class="key key--fn" (click)="append('sqrt(')">sqrt</button>
+    <button type="button" class="key key--fn" (click)="append('abs(')">abs</button>
+
+    <button type="button" class="key key--fn" (click)="append('^')">x^y</button>
+    <button type="button" class="key key--fn" (click)="applySquare()">x²</button>
+    <button type="button" class="key key--fn" (click)="applyCube()">x³</button>
+    <button type="button" class="key key--fn" (click)="applyInverse()">1/x</button>
+    <button type="button" class="key key--fn" (click)="applyFactorial()">x!</button>
+
+    <button type="button" class="key" (click)="append('7')">7</button>
+    <button type="button" class="key" (click)="append('8')">8</button>
+    <button type="button" class="key" (click)="append('9')">9</button>
+    <button type="button" class="key key--op" (click)="append('*')">×</button>
+    <button type="button" class="key key--fn" (click)="append('PI')">PI</button>
+
+    <button type="button" class="key" (click)="append('4')">4</button>
+    <button type="button" class="key" (click)="append('5')">5</button>
+    <button type="button" class="key" (click)="append('6')">6</button>
+    <button type="button" class="key key--op" (click)="append('-')">−</button>
+    <button type="button" class="key key--fn" (click)="append('e')">e</button>
+
+    <button type="button" class="key" (click)="append('1')">1</button>
+    <button type="button" class="key" (click)="append('2')">2</button>
+    <button type="button" class="key" (click)="append('3')">3</button>
+    <button type="button" class="key key--op" (click)="append('+')">+</button>
+    <button type="button" class="key key--fn" (click)="exp10()">EXP</button>
+
+    <button type="button" class="key key--wide" (click)="append('0')">0</button>
+    <button type="button" class="key" (click)="append('.')">.</button>
+    <button type="button" class="key key--fn" (click)="append('10^(')">10^x</button>
+    <button type="button" class="key key--fn" (click)="append('e^(')">e^x</button>
+    <button type="button" class="key key--equals" (click)="calculate()">=</button>
+  </div>
+
+  <details class="quick-help">
+    <summary>Guía rápida</summary>
+    <ul>
+      <li><strong>SHIFT</strong>: activa inversas (asin/acos/atan y asinh/acosh/atanh).</li>
+      <li><strong>DRG</strong>: cambia <strong>RAD</strong>/<strong>DEG</strong> para trigonometría.</li>
+      <li><strong>Ans</strong>: último resultado. <strong>M</strong>: memoria (MC/MR/M+/M-).</li>
+      <li><strong>EXP</strong>: notación científica (ej: <code>1e3</code> = 1000).</li>
+      <li><strong>%</strong>: porcentaje como <code>*0.01</code> (ej: <code>200*10%</code>).</li>
+    </ul>
+    <div class="examples">
+      <div><strong>Ejemplos:</strong></div>
+      <div><code>sin(PI/2)</code> (RAD)</div>
+      <div><code>sin(90)</code> (DEG)</div>
+      <div><code>sqrt(16)+log10(100)</code></div>
+    </div>
+  </details>
+
+  <details class="help">
+    <summary>Guía por función (botones)</summary>
+
+    <div class="help-grid">
+      <section class="help-section">
+        <h3>Control</h3>
+        <dl>
+          <div><dt>AC</dt><dd>Limpia expresión, resultado y error.</dd></div>
+          <div><dt>DEL</dt><dd>Borra el último carácter de la expresión.</dd></div>
+          <div><dt>=</dt><dd>Evalúa la expresión actual.</dd></div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Modos</h3>
+        <dl>
+          <div>
+            <dt>SHIFT</dt>
+            <dd>Activa funciones secundarias: <code>sin/cos/tan</code> → <code>asin/acos/atan</code> y <code>sinh/cosh/tanh</code> → <code>asinh/acosh/atanh</code>.</dd>
+          </div>
+          <div>
+            <dt>DRG</dt>
+            <dd>Cambia <code>RAD</code>/<code>DEG</code>. Afecta trigonometría y sus inversas.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Memoria</h3>
+        <dl>
+          <div><dt>Ans</dt><dd>Inserta el último resultado numérico.</dd></div>
+          <div><dt>M</dt><dd>Inserta el valor de memoria en la expresión.</dd></div>
+          <div><dt>MC</dt><dd>Resetea memoria a 0.</dd></div>
+          <div><dt>MR</dt><dd>Inserta el valor actual de memoria.</dd></div>
+          <div><dt>M+</dt><dd>Suma a memoria el valor numérico de la expresión (si se puede evaluar).</dd></div>
+          <div><dt>M-</dt><dd>Resta a memoria el valor numérico de la expresión (si se puede evaluar).</dd></div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Básicos</h3>
+        <dl>
+          <div><dt>0–9</dt><dd>Dígitos.</dd></div>
+          <div><dt>.</dt><dd>Decimal.</dd></div>
+          <div><dt>+</dt><dd>Suma.</dd></div>
+          <div><dt>−</dt><dd>Resta.</dd></div>
+          <div><dt>×</dt><dd>Multiplicación.</dd></div>
+          <div><dt>÷</dt><dd>División.</dd></div>
+          <div><dt>( )</dt><dd>Agrupación con paréntesis.</dd></div>
+          <div><dt>+/-</dt><dd>Cambia el signo del último término (lo envuelve como <code>-(...)</code>).</dd></div>
+          <div><dt>%</dt><dd>Porcentaje como <code>*0.01</code> (ej: <code>200*10%</code>).</dd></div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Trigonometría</h3>
+        <dl>
+          <div><dt>sin, cos, tan</dt><dd>Funciones trigonométricas en RAD/DEG.</dd></div>
+          <div><dt>asin, acos, atan</dt><dd>Inversas (con SHIFT).</dd></div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Hiperbólicas</h3>
+        <dl>
+          <div><dt>sinh, cosh, tanh</dt><dd>Funciones hiperbólicas.</dd></div>
+          <div><dt>asinh, acosh, atanh</dt><dd>Inversas (con SHIFT).</dd></div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Logaritmos y raíces</h3>
+        <dl>
+          <div><dt>ln</dt><dd>Logaritmo natural <code>log(x)</code>.</dd></div>
+          <div><dt>log</dt><dd>Logaritmo base 10 <code>log10(x)</code>.</dd></div>
+          <div><dt>sqrt</dt><dd>Raíz cuadrada <code>sqrt(x)</code>.</dd></div>
+          <div><dt>abs</dt><dd>Valor absoluto <code>abs(x)</code>.</dd></div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Potencias y factorial</h3>
+        <dl>
+          <div><dt>x^y</dt><dd>Potencia (usa <code>^</code>).</dd></div>
+          <div><dt>x²</dt><dd>Eleva el último término al cuadrado.</dd></div>
+          <div><dt>x³</dt><dd>Eleva el último término al cubo.</dd></div>
+          <div><dt>1/x</dt><dd>Convierte el último término en <code>1/(término)</code>.</dd></div>
+          <div><dt>x!</dt><dd>Factorial del último término (usa <code>!</code>).</dd></div>
+        </dl>
+      </section>
+
+      <section class="help-section">
+        <h3>Constantes y exponentes</h3>
+        <dl>
+          <div><dt>PI</dt><dd>Constante π.</dd></div>
+          <div><dt>e</dt><dd>Constante de Euler.</dd></div>
+          <div><dt>10^x</dt><dd>Inserta <code>10^(</code> (cierra con <code>)</code>).</dd></div>
+          <div><dt>e^x</dt><dd>Inserta <code>e^(</code> (cierra con <code>)</code>).</dd></div>
+          <div><dt>EXP</dt><dd>Notación científica: permite <code>1e3</code>, <code>2.5e-4</code>, etc.</dd></div>
+        </dl>
+      </section>
+    </div>
+  </details>
+</section>
