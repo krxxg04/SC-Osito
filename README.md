@@ -1,65 +1,67 @@
 # SC-Osito
-Proyecto de calculadora científica.
+Scientific Calculator Project.
 
-> Nota: En este repositorio hay una implementación web (Angular/TypeScript) dentro de `sc-osito/`.
+> **Note:** This repository contains a web implementation (Angular/TypeScript) located inside the `sc-osito/` directory.
 
-## Especificaciones (funciones solicitadas)
+## Specifications (Requested Features)
 
-### Lógica / evaluación
-- Evaluación de expresiones como texto usando **mathjs** (`evaluate`).
-- Soporta expresiones con paréntesis y operadores (por ejemplo: `(2+3)*4`, `2^3`, `5!`).
-- Variables internas:
-  - `Ans` = último resultado numérico.
-  - `M` = valor de memoria.
+### Logic / Evaluation
+- Expression evaluation from text using **mathjs** (`evaluate`).
+- Supports expressions with parentheses and operators (e.g., `(2+3)*4`, `2^3`, `5!`).
+- Internal Variables:
+  - `Ans`: Stores the last numerical result.
+  - `M`: Stores the memory value.
 
-### Modos
-- **DRG (RAD/DEG)**: el modo afecta a `sin/cos/tan` y a sus inversas `asin/acos/atan`.
-- **SHIFT**: habilita funciones secundarias (inversas trigonométricas e hiperbólicas).
+### Modes
+- **DRG (RAD/DEG)**: This mode affects `sin/cos/tan` and their inverses `asin/acos/atan`.
+- **SHIFT**: Enables secondary functions (inverse trigonometric and hyperbolic functions).
 
-### Operaciones soportadas
-- **Básicas**: `+`, `-`, `*`, `/`, `(`, `)`, `.`
-- **Científicas**:
-  - Trigonometría: `sin`, `cos`, `tan` + inversas con SHIFT.
-  - Hiperbólicas: `sinh`, `cosh`, `tanh` + inversas con SHIFT.
-  - Logaritmos: `ln` (`log`) y `log` base 10 (`log10`).
-  - Potencias y raíces: `x^y`, `x²`, `x³`, `sqrt`.
-  - Otras: `abs`, `1/x`, `x!`, constantes `PI` y `e`.
-  - Porcentaje: `%` (se interpreta como `*0.01`).
-  - Notación científica: `EXP` (para `1e3`, `2.5e-4`, etc.).
+### Supported Operations
+- **Basic**: `+`, `-`, `*`, `/`, `(`, `)`, `.`
+- **Scientific**:
+  - Trigonometry: `sin`, `cos`, `tan` + inverses via SHIFT.
+  - Hyperbolics: `sinh`, `cosh`, `tanh` + inverses via SHIFT.
+  - Logarithms: `ln` (`log`) and `log` base 10 (`log10`).
+  - Powers and Roots: `x^y`, `x²`, `x³`, `sqrt`.
+  - Others: `abs`, `1/x`, `x!`, constants `PI` and `e`.
+  - Percentage: `%` (interpreted as `*0.01`).
+  - Scientific Notation: `EXP` (for `1e3`, `2.5e-4`, etc.).
 
-### Memoria
-- `MC`, `MR`, `M+`, `M-` y variable `M`.
+### Memory
+- `MC`, `MR`, `M+`, `M-`, and variable `M`.
 
-### Tecnología UI
-- Componente standalone con **Signals**.
-- Teclado en **CSS Grid** (responsivo) con botones científicos adicionales.
+### UI Technology
+- Standalone component using **Signals**.
+- Keyboard layout built with **CSS Grid** (responsive) featuring additional scientific buttons.
 
-# Guía de la Calculadora Científica
+---
 
-Esta calculadora permite escribir **expresiones completas** (como en una calculadora científica moderna) y evaluarlas con `mathjs`.
+# Scientific Calculator Guide
 
-## Cómo usarla
+This calculator allows you to write **complete expressions** (like a modern scientific calculator) and evaluate them using `mathjs`.
 
-1. **Construye la expresión** tocando los botones (por ejemplo: `sin(` `45` `)` `+` `sqrt(` `16` `)`).
-2. Presiona **`=`** para calcular.
-3. **`AC`** borra todo (expresión, resultado y error).
-4. **`DEL`** borra el último carácter.
+## How to use it
 
-### Entrada tipo “expresión”
-- Puedes escribir con paréntesis: `(2+3)*4`.
-- Potencias con `^`: `2^3`.
-- Factorial con `!`: `5!`.
-- Notación científica con `EXP`: `1e3` (1000).
+1.  **Build your expression** by tapping the buttons (e.g., `sin(` `45` `)` `+` `sqrt(` `16` `)`).
+2.  Press **`=`** to calculate.
+3.  **`AC`** clears everything (expression, result, and error).
+4.  **`DEL`** deletes the last character.
 
-## Modos
+### Input Type: "Expression"
+- Use parentheses for grouping: `(2+3)*4`.
+- Powers use `^`: `2^3`.
+- Factorials use `!`: `5!`.
+- Scientific notation with `EXP`: `1e3` (equals 1000).
+
+## Modes
 
 ### DRG: RAD / DEG
-- Controla si `sin/cos/tan` trabajan en **radianes** (`RAD`) o **grados** (`DEG`).
-- Afecta también a las inversas: `asin/acos/atan`.
+- Toggles whether `sin/cos/tan` work in **Radians** (`RAD`) or **Degrees** (`DEG`).
+- Also affects inverse functions: `asin/acos/atan`.
 
 ### SHIFT
-- Activa funciones secundarias en algunos botones.
-- Con SHIFT **ON**:
+- Activates secondary functions on specific buttons.
+- With SHIFT **ON**:
   - `sin` → `asin`
   - `cos` → `acos`
   - `tan` → `atan`
@@ -67,57 +69,57 @@ Esta calculadora permite escribir **expresiones completas** (como en una calcula
   - `cosh` → `acosh`
   - `tanh` → `atanh`
 
-## Memoria y variables
+## Memory and Variables
 
-- `Ans`: inserta el **último resultado** numérico.
-- `M`: inserta el valor actual de **memoria** en la expresión.
-- `MC`: pone la memoria en 0.
-- `MR`: inserta el valor de memoria en la expresión.
-- `M+`: suma a memoria el valor numérico de la expresión actual (si se puede evaluar).
-- `M-`: resta a memoria el valor numérico de la expresión actual (si se puede evaluar).
+- `Ans`: Inserts the **last numerical result**.
+- `M`: Inserts the current **memory** value into the expression.
+- `MC`: Sets memory to 0.
+- `MR`: Inserts the memory value into the expression.
+- `M+`: Adds the numerical value of the current expression to memory (if evaluable).
+- `M-`: Subtracts the numerical value of the current expression from memory (if evaluable).
 
-## Qué hace cada botón
+## Button Functions
 
-> Nota: Algunos botones insertan texto tipo función (por ejemplo `sqrt(`). En esos casos normalmente debes cerrar con `)`.
+> **Note:** Some buttons insert function-type text (e.g., `sqrt(`). In these cases, you must usually close the expression with `)`.
 
 ### Control
-- `AC`: limpiar todo.
-- `DEL`: borrar último carácter.
-- `SHIFT`: alternar funciones secundarias.
-- `DRG: RAD/DEG`: alternar modo de ángulo.
-- `=`: evaluar la expresión.
+- `AC`: Clear all.
+- `DEL`: Delete last character.
+- `SHIFT`: Toggle secondary functions.
+- `DRG: RAD/DEG`: Toggle angle mode.
+- `=`: Evaluate expression.
 
-### Básicos
-- `0–9`: dígitos.
-- `.`: decimal.
-- `+  −  ×  ÷`: operaciones.
-- `( )`: paréntesis.
-- `+/-`: cambia el signo del último término (lo envuelve como `-(...)`).
-- `%`: convierte a porcentaje multiplicando por `0.01` (útil en expresiones como `200*10%`).
+### Basic
+- `0–9`: Digits.
+- `.`: Decimal point.
+- `+  −  ×  ÷`: Basic operations.
+- `( )`: Parentheses.
+- `+/-`: Changes the sign of the last term (wraps it as `-(...)`).
+- `%`: Converts to percentage by multiplying by `0.01` (useful for expressions like `200*10%`).
 
-### Científicos
-- `sin(`, `cos(`, `tan(`: trigonometría (según DRG).
-- `asin(`, `acos(`, `atan(`: inversas trigonométricas (SHIFT).
-- `sinh(`, `cosh(`, `tanh(`: hiperbólicas.
-- `asinh(`, `acosh(`, `atanh(`: inversas hiperbólicas (SHIFT).
-- `log(`: logaritmo natural (ln).
-- `log10(`: logaritmo base 10.
-- `sqrt(`: raíz cuadrada.
-- `abs(`: valor absoluto.
-- `x^y` (`^`): potencia.
-- `x²`: eleva el último término a 2.
-- `x³`: eleva el último término a 3.
-- `1/x`: transforma el último término a `1/(término)`.
-- `x!` (`!`): factorial del último término.
-- `PI`: constante π.
-- `e`: constante Euler.
-- `10^x`: inserta `10^(`.
-- `e^x`: inserta `e^(`.
-- `EXP`: notación científica (inserta `e` para usar `1e3`, `2.5e-4`, etc.).
+### Scientific
+- `sin(`, `cos(`, `tan(`: Trigonometry (depends on DRG mode).
+- `asin(`, `acos(`, `atan(`: Inverse trigonometry (via SHIFT).
+- `sinh(`, `cosh(`, `tanh(`: Hyperbolic functions.
+- `asinh(`, `acosh(`, `atanh(`: Inverse hyperbolic functions (via SHIFT).
+- `log(`: Natural logarithm (ln).
+- `log10(`: Base-10 logarithm.
+- `sqrt(`: Square root.
+- `abs(`: Absolute value.
+- `x^y` (`^`): Power/Exponent.
+- `x²`: Square (raises last term to the power of 2).
+- `x³`: Cube (raises last term to the power of 3).
+- `1/x`: Reciprocal (transforms last term to `1/(term)`).
+- `x!` (`!`): Factorial of the last term.
+- `PI`: Constant π.
+- `e`: Euler’s constant.
+- `10^x`: Inserts `10^(`.
+- `e^x`: Inserts `e^(`.
+- `EXP`: Scientific notation (inserts `e` to use `1e3`, `2.5e-4`, etc.).
 
-## Ejemplos
-- `sin(90)` en modo `DEG` → 1
-- `sin(PI/2)` en modo `RAD` → 1
+## Examples
+- `sin(90)` in `DEG` mode → 1
+- `sin(PI/2)` in `RAD` mode → 1
 - `5!` → 120
 - `1/(2+3)` → 0.2
 - `200*10%` → 20
