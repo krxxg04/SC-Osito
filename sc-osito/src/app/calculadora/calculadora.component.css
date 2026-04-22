@@ -103,6 +103,10 @@
     padding: 0.75rem;
   }
 
+  .keys {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .key {
     padding: 0.8rem 0.5rem;
   }
@@ -139,4 +143,64 @@
   opacity: 0.95;
   display: grid;
   gap: 0.25rem;
+}
+
+.help {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  border: 1px solid color-mix(in srgb, CanvasText 18%, transparent);
+  background: color-mix(in srgb, Canvas 92%, black);
+  font-size: 0.9rem;
+}
+
+.help > summary {
+  cursor: pointer;
+  font-weight: 700;
+  user-select: none;
+}
+
+.help-grid {
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.help-section {
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  border: 1px solid color-mix(in srgb, CanvasText 12%, transparent);
+  background: color-mix(in srgb, Canvas 88%, black);
+}
+
+.help-section h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.35rem;
+}
+
+.help-section dl {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.help-section dl > div {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.5rem;
+  align-items: start;
+}
+
+.help-section dt {
+  font-weight: 700;
+}
+
+.help-section dd {
+  opacity: 0.95;
+}
+
+@media (max-width: 420px) {
+  .help-section dl > div {
+    grid-template-columns: 1fr;
+  }
 }
